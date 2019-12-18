@@ -1,6 +1,7 @@
  
 import pygame
- 
+from pygame.locals import *
+import random
 # Colors
 BLACK = (0, 0, 0)
 BLUE = (0,0,255)
@@ -17,6 +18,13 @@ x_change = segment_width + segment_margin
 y_change = 0
  
  
+class Food():
+    #Class to print food
+    x_food = random.randint(0, 785)
+    y_food = random.randint(0, 585)
+    score = 0
+
+
 class Segment(pygame.sprite.Sprite):
     # -- Methods
     # Constructor function
@@ -39,6 +47,9 @@ pygame.init()
 # Create an 800x600 sized screen
 screen = pygame.display.set_mode([800, 600])
  
+myfont = pygame.font.Font(None, 40)
+
+
 # Set the title of the window
 pygame.display.set_caption('Snake Game')
  
@@ -56,7 +67,10 @@ for i in range(15):
  
 clock = pygame.time.Clock()
 done = False
- 
+
+x_food = random.randint(0, 785)
+y_food = random.randint(0, 585)
+score = 0
 while not done:
  
     for event in pygame.event.get():
@@ -79,6 +93,15 @@ while not done:
             if event.key == pygame.K_DOWN:
                 x_change = 0
                 y_change = (segment_height + segment_margin)
+            if event.key == pygame.K_e:
+                print(score)
+            if y < y_food+30:
+                if x > x_food and x < x_food+30 or x+20 > x_food and x+20<x_food+30: 
+                    scoretext = myfont.render("Score {0}".format(score), 1, BLUE)
+                    screen.blit(scoretext, (50, 100))
+                    score += 1
+
+
  
     # Get rid of last segment of the snake
     # .pop() command removes last item in list
@@ -97,6 +120,9 @@ while not done:
     # -- Draw everything
     # Clear screen
     screen.fill(BLACK)
+
+    pygame.draw.rect(screen, BLUE, [x_food, y_food, 20, 20])
+
  
     allspriteslist.draw(screen)
  
