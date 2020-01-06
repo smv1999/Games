@@ -1,4 +1,3 @@
-# firstPythonGame
 
 
 ## This repository consists of games written in python
