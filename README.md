@@ -1,6 +1,6 @@
 
 
-## This repository consists of games written in python
+## This repository consists of games
 
 Refer this for keys: https://www.pygame.org/docs/ref/key.html
 
