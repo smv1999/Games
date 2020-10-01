@@ -4,6 +4,8 @@ import math
 import tkinter as tk
 from tkinter import messagebox 
 
+pygame.init()
+
 class cube(object):
     rows = 20
     w = 500
@@ -47,22 +49,22 @@ class snake(object):
             keys = pygame.key.get_pressed()
 
             for key in keys:
-                if keys[pygame.K_LEFT]:
+                if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                     self.dirnx = -1
                     self.dirny = 0
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
 
-                elif keys[pygame.K_RIGHT]:
+                elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                     self.dirnx = 1
                     self.dirny = 0
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
  
-                elif keys[pygame.K_UP]:
+                elif keys[pygame.K_UP] or keys[pygame.K_w]:
                     self.dirnx = 0
                     self.dirny = -1
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
  
-                elif keys[pygame.K_DOWN]:
+                elif keys[pygame.K_s] or keys[pygame.K_DOWN]:
                     self.dirnx = 0
                     self.dirny = 1
                     self.turns[self.head.pos[:]] = [self.dirnx, self.dirny]
@@ -158,6 +160,7 @@ def main():
     width = 500
     rows = 20
     win = pygame.display.set_mode((width, width))
+    pygame.display.set_caption('Snake Game')
     s =  snake((255, 0, 0),(10,10))
     snack = cube(randomSnack(rows, s), color=(0,255,0))
     flag = True
@@ -165,6 +168,7 @@ def main():
     clock = pygame.time.Clock()
 
     while flag:
+
         pygame.time.delay(80)
         clock.tick(8)
         s.move()
