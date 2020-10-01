@@ -1,6 +1,4 @@
-
-
-## This repository consists of games
+THE CLASSIC GAMES MADE IN PYTHON
 
 Refer this for keys: https://www.pygame.org/docs/ref/key.html
 
