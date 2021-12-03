@@ -163,11 +163,16 @@ def main():
     flag = True
 
     clock = pygame.time.Clock()
+    
 
     while flag:
         pygame.time.delay(80)
         clock.tick(8)
         s.move()
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_q]:
+            break
         if s.body[0].pos == snack.pos:
             s.addCube()
             snack = cube(randomSnack(rows, s), color=(0,255,0))
